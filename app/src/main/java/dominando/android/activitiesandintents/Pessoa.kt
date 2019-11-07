@@ -1,5 +1,7 @@
 package dominando.android.activitiesandintents
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-class Pessoa(var nome: String, var idade: Int) : Serializable
+@Parcelize
+data class Pessoa(var nome: String, var idade: Int) : Parcelable

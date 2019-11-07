@@ -1,8 +1,10 @@
 package dominando.android.activitiesandintents
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_tela2.*
+import org.parceler.Parcels
 
 class Tela2Activity : AppCompatActivity() {
 
@@ -12,8 +14,8 @@ class Tela2Activity : AppCompatActivity() {
 
         val nome = intent.getStringExtra("nome")
         val idade = intent.getIntExtra("idade", -1)
-        val cliente = intent.getParcelableExtra<Cliente>("cliente")
-        val pessoa = intent.getSerializableExtra("pessoa") as Pessoa?
+        val cliente = Parcels.unwrap<Cliente?>(intent.getParcelableExtra("cliente"))
+        val pessoa = intent.getParcelableExtra<Pessoa>("pessoa")
 
         textMensagem.text = if(cliente != null) {
             getString(R.string.tela2_texto1, cliente.nome, cliente.codigo)
@@ -23,5 +25,35 @@ class Tela2Activity : AppCompatActivity() {
             getString(R.string.tela2_texto2, nome, idade)
         }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i("WFM", "Tela2::onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("WFM", "Tela2::onResume")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.i("WFM", "Tela2::onRestart")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("WFM", "Tela2::onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i("WFM", "Tela2::onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.i("WFM", "Tela2::onDestroy")
     }
 }
